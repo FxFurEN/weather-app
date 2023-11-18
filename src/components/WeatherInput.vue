@@ -28,11 +28,9 @@
         this.$emit('clearWeatherData');
         try {
           this.loading = true;
-          
           const response = await this.$axios.get(
-            `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=042c263f0ab874270f54d6cb02ea4fa9`
-          );
-  
+           `https://api.openweathermap.org/data/2.5/weather?q=${this.city}&appid=${process.env.VUE_APP_OPENWEATHER_API_KEY}`
+              );
           if (response.status === 200) {
             console.log(response.data);
             this.error = null;
