@@ -1,17 +1,34 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <WeatherInput @weatherData="setWeatherData"  @clearWeatherData="clearWeatherData"/>
+    <WeatherDisplay :weather="weatherData" v-if="weatherData" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import WeatherInput from "./components/WeatherInput.vue";
+import WeatherDisplay from "./components/WeatherDisplay.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    WeatherInput,
+    WeatherDisplay,
+  },
+  data() {
+    return {
+      weatherData: null,
+    };
+  },
+  methods: {
+    setWeatherData(data) {
+      this.weatherData = data;
+    },
+    clearWeatherData() {
+      this.weatherData = null;
+    },
+  },
+};
 </script>
 
 <style>
